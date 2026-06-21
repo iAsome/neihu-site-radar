@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-21T05:45:22.035Z",
+  "generatedAt": "2026-06-21T15:19:53.325Z",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "regions": [
     {
@@ -16,7 +16,7 @@
         121.67,
         25.21
       ],
-      "count": 54945,
+      "count": 17830,
       "file": "./data/regions/taipei.json"
     },
     {
@@ -33,7 +33,7 @@
         122.02,
         25.31
       ],
-      "count": 44770,
+      "count": 10696,
       "file": "./data/regions/new-taipei.json"
     },
     {
@@ -50,7 +50,7 @@
         121.82,
         25.21
       ],
-      "count": 3869,
+      "count": 822,
       "file": "./data/regions/keelung.json"
     },
     {
@@ -67,7 +67,7 @@
         121.48,
         25.18
       ],
-      "count": 24842,
+      "count": 6121,
       "file": "./data/regions/taoyuan.json"
     },
     {
@@ -84,7 +84,7 @@
         121.03,
         24.87
       ],
-      "count": 6851,
+      "count": 1614,
       "file": "./data/regions/hsinchu-city.json"
     },
     {
@@ -101,9 +101,10 @@
         121.53,
         25.04
       ],
-      "count": 10328,
+      "count": 1614,
       "file": "./data/regions/hsinchu-county.json"
     }
   ],
-  "totalCount": 145605
+  "totalCount": 38697,
+  "taxonomyUpdatedAt": "2026-06-21T15:30:34.969Z"
 }

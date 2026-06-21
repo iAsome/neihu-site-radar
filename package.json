@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node server.mjs",
-    "sync:osm": "node scripts/sync-regions.mjs"
+    "sync:osm": "node scripts/sync-regions.mjs",
+    "reclassify:food": "node scripts/reclassify-food.mjs"
   }
 }

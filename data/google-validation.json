@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-06-21",
+  "method": "Google 在地搜尋中連至 Google Maps 的可見商家卡片抽樣；只記錄事實性店名與地址，不做批次擷取或重製 Google Maps 資料庫。",
+  "scope": "內湖、板橋、桃園各 3 筆，共 9 筆餐飲店樣本",
+  "summary": {
+    "sampleCount": 9,
+    "nameMatches": 2,
+    "nameAndAddressMatches": 1,
+    "missingOrUnconfirmed": 7,
+    "conclusion": "OpenStreetMap 可發布資料仍有缺漏；Google Maps 可作人工抽樣校對標準，但不能被整庫複製進本站。"
+  },
+  "samples": [
+    { "area": "內湖", "query": "內湖 豆花", "name": "芋艿川豆花店", "address": "臺北市內湖區江南街71巷65弄15號", "osmStatus": "unconfirmed", "note": "OSM 有同名短稱但地址不同，不視為同一店" },
+    { "area": "內湖", "query": "內湖 豆花", "name": "逸豆花", "address": "臺北市內湖區成功路四段30巷8-1號", "osmStatus": "missing" },
+    { "area": "內湖", "query": "內湖 豆花", "name": "甜品屋豆花冰品", "address": "臺北市內湖區內湖路二段374之1號", "osmStatus": "name_match", "note": "OSM 店名為甜品屋，未附完整地址" },
+    { "area": "桃園", "query": "桃園 飲料店", "name": "星M STAR M", "address": "桃園市桃園區中華路56號", "osmStatus": "missing" },
+    { "area": "桃園", "query": "桃園 飲料店", "name": "無飲桃園店", "address": "桃園市桃園區民安路121號", "osmStatus": "missing" },
+    { "area": "桃園", "query": "桃園 飲料店", "name": "拾汣茶屋 桃園民族店", "address": "桃園市桃園區民族路80號", "osmStatus": "name_and_address_match", "osmCategory": "手搖茶飲" },
+    { "area": "板橋", "query": "板橋 豆花", "name": "一茶甜品", "address": "新北市板橋區中山路一段129號", "osmStatus": "missing" },
+    { "area": "板橋", "query": "板橋 豆花", "name": "鼎豐養生甜品店", "address": "新北市板橋區華興街22號", "osmStatus": "missing" },
+    { "area": "板橋", "query": "板橋 豆花", "name": "福春號手工豆花", "address": "新北市板橋區重慶路189號", "osmStatus": "unconfirmed", "note": "OSM 僅有泛稱手工豆花，無法確認為同一店" }
+  ]
+}

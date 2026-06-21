@@ -1,11 +1,19 @@
 [
   {
-    "name": "OpenStreetMap 北台灣店家與設施點位",
+    "name": "OpenStreetMap 北台灣飲食店家點位",
     "owner": "OpenStreetMap contributors",
     "frequency": "依 OSM 社群更新",
     "license": "ODbL 1.0",
     "url": "https://www.openstreetmap.org/copyright",
-    "usage": "台北、新北、基隆、桃園、新竹的店家、辦公室、醫療、交通與休閒 POI",
+    "usage": "台北、新北、基隆、桃園、新竹的餐廳、飲料、咖啡、甜品、烘焙與食品零售點位",
+    "kind": "實際觀測"
+  },
+  {
+    "name": "Google Maps 可見商家抽樣校對（2026-06-21）",
+    "owner": "Google Maps",
+    "frequency": "人工抽樣，不做整庫複製",
+    "url": "https://www.google.com/maps",
+    "usage": "以內湖、板橋、桃園的可見在地商家卡片核對 OSM 店名與地址缺漏；9 筆中 2 筆店名吻合、1 筆店名與地址皆吻合",
     "kind": "實際觀測"
   },
   {

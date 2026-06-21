@@ -4,7 +4,9 @@ import { fileURLToPath } from "node:url";
 const root = fileURLToPath(new URL("../", import.meta.url));
 const target = `${root}/data/regions/hsinchu-county.json`;
 const url = `https://nominatim.openstreetmap.org/search?format=geojson&polygon_geojson=1&limit=1&countrycodes=tw&q=${encodeURIComponent("新竹縣 臺灣")}`;
-const boundary = await (await fetch(url, { headers: { "User-Agent": "NorthernTaiwanSiteRadar/2.0" } })).json();
+const boundary = globalThis.BOUNDARY_PATH
+  ? JSON.parse((await readFile(globalThis.BOUNDARY_PATH, "utf8")).replace(/^\uFEFF/, ""))
+  : await (await fetch(url, { headers: { "User-Agent": "NorthernTaiwanSiteRadar/2.0" } })).json();
 const geometry = boundary.features?.[0]?.geometry;
 if (!geometry) throw new Error("無法取得新竹縣界");
 

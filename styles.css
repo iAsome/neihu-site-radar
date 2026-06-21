@@ -113,7 +113,11 @@ button { color: inherit; }
 .concept-current i { width: 7px; height: 7px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 3px rgba(211,145,50,.14); }
 .concept-current b { color: var(--ink); }
 
-.category-filters { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.category-filters { display: grid; gap: 12px; }
+.filter-group { display: grid; gap: 6px; }
+.filter-group-title { display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-family: var(--zh); font-size: 8px; letter-spacing: .05em; }
+.filter-group-title b { font-family: var(--sans); font-size: 8px; color: #8a938e; }
+.filter-group-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
 .filter-chip { display: flex; align-items: center; gap: 8px; background: #fafbf9; border: 1px solid var(--soft-line); border-radius: 9px; padding: 8px 9px; cursor: pointer; text-align: left; font-family: var(--zh); font-size: 10px; }
 .filter-chip .swatch { width: 8px; height: 8px; border-radius: 50%; box-shadow: 0 0 0 3px color-mix(in srgb, var(--chip) 18%, transparent); background: var(--chip); }
 .filter-chip .filter-count { margin-left: auto; color: var(--muted); font-family: var(--sans); font-size: 9px; }

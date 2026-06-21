@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="北台灣開店雷達：分析台北、新北、基隆、桃園、新竹 50–1,000 公尺內的店家、客群、人流與開店機會。" />
-  <title>北台灣開店雷達｜地址商圈選址分析</title>
+  <meta name="description" content="北台灣餐飲選址雷達：分析台北、新北、基隆、桃園、新竹的餐廳、飲料、甜品與咖啡市場。" />
+  <title>北台灣餐飲選址雷達｜餐廳甜品飲料市場分析</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -14,9 +14,9 @@
 <body>
   <div class="app-shell">
     <header class="topbar">
-      <a class="brand" href="#" aria-label="北台灣開店雷達首頁">
+      <a class="brand" href="#" aria-label="北台灣餐飲選址雷達首頁">
         <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span><strong>北台灣開店雷達</strong><small>NORTHERN TAIWAN SITE RADAR</small></span>
+        <span><strong>北台灣餐飲選址雷達</strong><small>FOOD & BEVERAGE SITE RADAR</small></span>
       </a>
       <div class="topbar-center">
         <span class="status-dot"></span>
@@ -34,9 +34,9 @@
         <div class="panel-heading">
           <div>
             <span class="eyebrow">ADDRESS INTELLIGENCE</span>
-            <h1>這個店址，<br />生意做得起來嗎？</h1>
+            <h1>這個餐飲店址，<br />生意做得起來嗎？</h1>
           </div>
-          <p>輸入台北、新北、基隆、桃園或新竹地址，也可以直接點地圖重新分析。</p>
+          <p>只分析餐廳、飲料、咖啡、甜品、烘焙與食品零售；輸入地址即可比較完整飲食市場。</p>
         </div>
 
         <section class="search-section" aria-labelledby="search-title">
@@ -80,7 +80,7 @@
             <span class="source-badge model">開店評比</span>
           </div>
           <div class="concept-form">
-            <label><span>大分類</span><select id="concept-category" aria-label="店型大分類"><option value="dessert">甜品店</option><option value="drink">飲料店</option><option value="restaurant">餐廳</option><option value="breakfast">早餐店</option><option value="digital">3C 通訊</option></select></label>
+            <label><span>大分類</span><select id="concept-category" aria-label="店型大分類"><option value="dessert">甜品店</option><option value="drink">飲料店</option><option value="restaurant">餐廳</option><option value="breakfast">早餐店</option></select></label>
             <label><span>小分類</span><select id="concept-subtype" aria-label="店型小分類"><option value="tofu-pudding">豆花店</option><option value="ice">冰品甜湯</option><option value="bakery-dessert">烘焙甜點</option></select></label>
             <label><span>預估客單價</span><select id="concept-price" aria-label="預估客單價"><option value="100">100 元以下</option><option value="200">101–200 元</option><option value="400">201–400 元</option><option value="800">401–800 元</option><option value="1500">800 元以上</option></select></label>
             <button id="run-concept" class="concept-run"><span>開始評比</span><b>→</b></button>
@@ -90,7 +90,7 @@
 
         <section class="category-section" aria-labelledby="category-title">
           <div class="section-title-row">
-            <h2 id="category-title">地圖圖層</h2>
+            <h2 id="category-title">飲食店細分類</h2>
             <button class="text-button" id="toggle-all">全部隱藏</button>
           </div>
           <div id="category-filters" class="category-filters"></div>
@@ -102,7 +102,7 @@
             <span class="source-badge observed">分區快取</span>
           </div>
           <div class="baseline-grid">
-            <div><strong id="district-pop">—</strong><span>區域總點位</span></div>
+            <div><strong id="district-pop">—</strong><span>區域飲食店家</span></div>
             <div><strong id="district-households">—</strong><span>目前已載入</span></div>
             <div><strong id="district-workforce">1×</strong><span>縮放載入次數</span></div>
           </div>
@@ -214,7 +214,7 @@
             <div class="card age-card">
               <div class="card-title"><div><span class="eyebrow">AGE PROFILE</span><h3>可能客群年齡</h3></div></div>
               <div id="age-chart" class="age-chart"></div>
-              <p class="method-note">以北台灣都會年齡基準為底，依周邊辦公、學校與住宅點位調整；不是手機信令實測。</p>
+              <p class="method-note">以北台灣都會年齡基準為底，依周邊餐飲型態、生活採買與商圈強度作代理調整；不是手機信令實測。</p>
             </div>
           </section>
 
@@ -248,7 +248,7 @@
 
   <dialog id="sources-dialog">
     <div class="dialog-head"><div><span class="eyebrow">DATA PROVENANCE</span><h2>資料來源與限制</h2></div><button class="dialog-close" aria-label="關閉">×</button></div>
-    <p class="dialog-intro">本平台不複製 Google Maps。可發布地圖採 OpenStreetMap；官方統計、實際點位與模型推估以不同標籤區分。</p>
+    <p class="dialog-intro">餐飲店家主資料於 2026-06-21 同步 OpenStreetMap；Google Maps 僅作當日可見結果抽樣校對，不複製其資料庫。官方統計、實際點位與模型推估以不同標籤區分。</p>
     <div id="sources-list" class="sources-list"></div>
     <div class="legal-note"><strong>重要：</strong>本工具用於初篩，不構成租約、投資或營收保證。簽約前仍需現場分時段計數、租金與坪效試算。</div>
   </dialog>
