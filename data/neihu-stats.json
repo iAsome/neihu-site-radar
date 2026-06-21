@@ -1,0 +1,30 @@
+{
+  "area": "臺北市內湖區",
+  "statMonth": "2026-05",
+  "population": 266359,
+  "households": 112154,
+  "male": 125618,
+  "female": 140741,
+  "ageBands": [
+    { "label": "0–14", "value": 34817 },
+    { "label": "15–24", "value": 21484 },
+    { "label": "25–34", "value": 32160 },
+    { "label": "35–44", "value": 41642 },
+    { "label": "45–54", "value": 40796 },
+    { "label": "55–64", "value": 39671 },
+    { "label": "65+", "value": 55789 }
+  ],
+  "workforceEstimate": {
+    "value": 180000,
+    "confidence": "中",
+    "note": "內湖科技園區與南港軟體園區相關公開報告常見量級的模型先驗；不是即時門禁人數。"
+  },
+  "districtBenchmarks": {
+    "monthlyHouseholdSpend": 86500,
+    "lunchTicket": 165,
+    "drinkTicket": 72,
+    "dinnerTicket": 420,
+    "retailTicket": 980
+  },
+  "officialSource": "https://data.taipei/dataset/detail?id=6a1dbb4e-e99c-4e67-ab09-f6d83852dc99"
+}

@@ -1,0 +1,67 @@
+[
+  {
+    "name": "OpenStreetMap 店家與設施點位",
+    "owner": "OpenStreetMap contributors",
+    "frequency": "依 OSM 社群更新",
+    "license": "ODbL 1.0",
+    "url": "https://www.openstreetmap.org/copyright",
+    "usage": "店家、辦公室、醫療、交通、休閒等 POI 與底圖",
+    "kind": "實際觀測"
+  },
+  {
+    "name": "臺北市各行政區最新月份人口數及戶數",
+    "owner": "臺北市政府民政局",
+    "frequency": "每月",
+    "url": "https://data.taipei/dataset/detail?id=6a1dbb4e-e99c-4e67-ab09-f6d83852dc99",
+    "usage": "人口、戶數、性別",
+    "kind": "官方統計"
+  },
+  {
+    "name": "臺北市各里人口數按年齡分",
+    "owner": "臺北市政府民政局",
+    "frequency": "每月",
+    "url": "https://data.taipei/dataset/detail?id=a6394e3f-3514-4542-87bd-de4310a40db3",
+    "usage": "年齡帶與住戶客群基準",
+    "kind": "官方統計"
+  },
+  {
+    "name": "臺北市公司登記報表",
+    "owner": "臺北市政府產業發展局",
+    "frequency": "每月",
+    "url": "https://data.taipei/dataset/detail?id=544c7e21-e18a-4904-9f32-15fae2e30acc",
+    "usage": "公司家數與產業結構校準",
+    "kind": "官方統計"
+  },
+  {
+    "name": "臺北市商業登記報表",
+    "owner": "臺北市政府產業發展局",
+    "frequency": "每月",
+    "url": "https://data.taipei/dataset/detail?id=d32fe131-6965-47e3-9433-7352a2ff2681",
+    "usage": "商業家數與業別校準",
+    "kind": "官方統計"
+  },
+  {
+    "name": "臺北市交通流量及特性調查資料",
+    "owner": "臺北市政府交通局",
+    "frequency": "每年",
+    "url": "https://data.taipei/dataset/detail?id=68767aa4-6703-4760-8a0e-74c641d66b90",
+    "usage": "主要道路與時段人車流模型校準",
+    "kind": "官方統計"
+  },
+  {
+    "name": "實價登錄與公告地價資料",
+    "owner": "內政部／臺北市政府地政局",
+    "frequency": "定期",
+    "url": "https://lvr.land.moi.gov.tw/",
+    "usage": "地段成本與消費能力代理變數",
+    "kind": "官方統計"
+  },
+  {
+    "name": "店址評分模型 v1",
+    "owner": "內湖開店雷達",
+    "frequency": "隨模型版本",
+    "url": "#methodology",
+    "usage": "競爭、互補、人流、消費力、租金壓力與資料可信度加權",
+    "kind": "模型推估"
+  }
+]

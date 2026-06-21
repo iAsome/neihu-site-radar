@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="內湖開店雷達：輸入地址，分析 50–1,000 公尺內的店家、客群、人流、消費力與開店機會。" />
+  <title>內湖開店雷達｜地址商圈選址分析</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="內湖開店雷達首頁">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span><strong>內湖開店雷達</strong><small>NEIHU SITE RADAR</small></span>
+      </a>
+      <div class="topbar-center">
+        <span class="status-dot"></span>
+        <span id="data-status">資料載入中</span>
+        <button class="text-button" id="open-sources">查看來源</button>
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-button" id="help-button" title="使用說明" aria-label="使用說明">?</button>
+        <button class="primary-button compact" id="export-button">匯出分析摘要</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="control-panel">
+        <div class="panel-heading">
+          <div>
+            <span class="eyebrow">ADDRESS INTELLIGENCE</span>
+            <h1>這個店址，<br />生意做得起來嗎？</h1>
+          </div>
+          <p>輸入內湖地址，或直接點選地圖。系統會重算周邊競爭、客群與時段機會。</p>
+        </div>
+
+        <section class="search-section" aria-labelledby="search-title">
+          <div class="section-title-row">
+            <h2 id="search-title">店址定位</h2>
+            <button class="location-button" id="locate-button" title="使用目前位置">⌖</button>
+          </div>
+          <form id="address-form">
+            <label class="input-wrap">
+              <span class="pin-icon">⌖</span>
+              <input id="address-input" type="search" value="台北市內湖區瑞光路513巷22弄5號" autocomplete="street-address" aria-label="輸入店面地址" />
+              <button type="submit" aria-label="搜尋地址">→</button>
+            </label>
+          </form>
+          <div class="quick-addresses" aria-label="範例地址">
+            <button data-lat="25.07857" data-lon="121.57605" data-address="台北市內湖區瑞光路513巷22弄5號">內科核心</button>
+            <button data-lat="25.08275" data-lon="121.56744" data-address="捷運港墘站">港墘站</button>
+            <button data-lat="25.08375" data-lon="121.60239" data-address="捷運葫洲站">葫洲站</button>
+          </div>
+        </section>
+
+        <section class="radius-section" aria-labelledby="radius-title">
+          <div class="section-title-row">
+            <h2 id="radius-title">分析半徑</h2>
+            <span class="subtle-label">步行約 <b id="walk-time">6 分鐘</b></span>
+          </div>
+          <div class="radius-options" role="radiogroup" aria-label="分析半徑">
+            <button data-radius="50" role="radio" aria-checked="false">50<small>m</small></button>
+            <button data-radius="100" role="radio" aria-checked="false">100<small>m</small></button>
+            <button data-radius="200" role="radio" aria-checked="false">200<small>m</small></button>
+            <button class="active" data-radius="500" role="radio" aria-checked="true">500<small>m</small></button>
+            <button data-radius="1000" role="radio" aria-checked="false">1<small>km</small></button>
+          </div>
+        </section>
+
+        <section class="category-section" aria-labelledby="category-title">
+          <div class="section-title-row">
+            <h2 id="category-title">地圖圖層</h2>
+            <button class="text-button" id="toggle-all">全部隱藏</button>
+          </div>
+          <div id="category-filters" class="category-filters"></div>
+        </section>
+
+        <section class="district-baseline">
+          <div class="baseline-head">
+            <span>內湖區基準</span>
+            <span class="source-badge official">官方統計</span>
+          </div>
+          <div class="baseline-grid">
+            <div><strong id="district-pop">—</strong><span>常住人口</span></div>
+            <div><strong id="district-households">—</strong><span>戶數</span></div>
+            <div><strong id="district-workforce">—</strong><span>上班人口推估</span></div>
+          </div>
+        </section>
+      </aside>
+
+      <section class="map-stage" aria-label="內湖區商圈地圖">
+        <div id="map"></div>
+        <div class="map-top-card">
+          <div>
+            <span class="map-label">目前分析位置</span>
+            <strong id="selected-address">瑞光路 513 巷商辦聚落</strong>
+          </div>
+          <span class="confidence-badge"><i></i> 資料可信度 <b id="confidence-score">82%</b></span>
+        </div>
+        <div class="map-legend">
+          <span><i class="legend-ring"></i>分析範圍</span>
+          <span><i class="legend-heat"></i>商業密度</span>
+          <span><i class="legend-pin"></i>選定店址</span>
+        </div>
+        <button class="map-reset" id="reset-view" title="回到分析位置">⌾</button>
+        <div class="zoom-note">縮放或點擊地圖可重新定位</div>
+      </section>
+
+      <aside class="insight-panel">
+        <div class="insight-header">
+          <div>
+            <span class="eyebrow">SITE SCORE</span>
+            <h2>店址機會分數</h2>
+          </div>
+          <div class="score-ring" id="score-ring" style="--score:78">
+            <span><strong id="site-score">78</strong><small>/100</small></span>
+          </div>
+        </div>
+        <div class="verdict" id="verdict">
+          <span class="verdict-icon">↗</span>
+          <div><strong>值得進一步評估</strong><p>午間剛需強，晚間與假日需靠目的型消費補足。</p></div>
+        </div>
+
+        <nav class="tabs" aria-label="分析分頁">
+          <button class="active" data-tab="overview">總覽</button>
+          <button data-tab="mix">店家</button>
+          <button data-tab="people">客群</button>
+          <button data-tab="flow">人流</button>
+          <button data-tab="advice">建議</button>
+        </nav>
+
+        <div class="tab-panels">
+          <section class="tab-panel active" id="tab-overview">
+            <div class="metric-grid">
+              <article><span>範圍內店家</span><strong id="poi-count">—</strong><small id="poi-density">— 家／公頃</small></article>
+              <article><span>品牌數</span><strong id="brand-count">—</strong><small id="brand-ratio">連鎖辨識率 —</small></article>
+              <article><span>消費力指數</span><strong id="spend-index">—</strong><small>全市基準 = 100</small></article>
+              <article><span>午間潛在人流</span><strong id="lunch-flow">—</strong><small>人次／時段・模型值</small></article>
+            </div>
+
+            <div class="card block-card">
+              <div class="card-title"><div><span class="eyebrow">MARKET MIX</span><h3>周邊業態結構</h3></div><span class="source-badge observed">實際點位</span></div>
+              <div id="category-bars" class="category-bars"></div>
+            </div>
+
+            <div class="card opportunity-card">
+              <div class="card-title"><div><span class="eyebrow">WHITE SPACE</span><h3>市場空缺</h3></div><span class="source-badge model">模型推估</span></div>
+              <div id="opportunity-list" class="opportunity-list"></div>
+            </div>
+          </section>
+
+          <section class="tab-panel" id="tab-mix">
+            <div class="card block-card flush">
+              <div class="card-title"><div><span class="eyebrow">COMPETITION</span><h3>分類競爭地圖</h3></div></div>
+              <div class="table-head"><span>分類</span><span>店家</span><span>平均客單</span><span>競爭</span></div>
+              <div id="category-table" class="category-table"></div>
+            </div>
+            <div class="card cuisine-card">
+              <div class="card-title"><div><span class="eyebrow">TASTE PROFILE</span><h3>餐飲口味組成</h3></div></div>
+              <div id="cuisine-tags" class="cuisine-tags"></div>
+            </div>
+          </section>
+
+          <section class="tab-panel" id="tab-people">
+            <div class="card persona-card">
+              <div class="card-title"><div><span class="eyebrow">PRIMARY PERSONA</span><h3 id="persona-title">效率型科技上班族</h3></div><span class="source-badge model">模型推估</span></div>
+              <p id="persona-copy">重視出餐速度、可預期品質與行動支付；午餐決策半徑短，平日下午有咖啡與飲品需求。</p>
+              <div class="persona-chips" id="persona-chips"></div>
+            </div>
+            <div class="card age-card">
+              <div class="card-title"><div><span class="eyebrow">AGE PROFILE</span><h3>可能客群年齡</h3></div></div>
+              <div id="age-chart" class="age-chart"></div>
+              <p class="method-note">以內湖區戶籍年齡為基底，依周邊辦公、學校與住宅點位調整；不是手機信令實測。</p>
+            </div>
+          </section>
+
+          <section class="tab-panel" id="tab-flow">
+            <div class="card flow-card">
+              <div class="card-title"><div><span class="eyebrow">DAY RHYTHM</span><h3>平日人流節奏</h3></div><span class="source-badge model">模型推估</span></div>
+              <div id="flow-chart" class="flow-chart"></div>
+            </div>
+            <div class="flow-events" id="flow-events"></div>
+            <div class="card compare-card">
+              <div class="card-title"><div><span class="eyebrow">WEEKDAY VS WEEKEND</span><h3>週間落差</h3></div></div>
+              <div id="day-compare"></div>
+            </div>
+          </section>
+
+          <section class="tab-panel" id="tab-advice">
+            <div class="card score-breakdown">
+              <div class="card-title"><div><span class="eyebrow">SCORECARD</span><h3>六項評分</h3></div></div>
+              <div id="score-breakdown"></div>
+            </div>
+            <div class="advice-list" id="advice-list"></div>
+            <div class="methodology" id="methodology">
+              <strong>怎麼算？</strong>
+              <p>依商圈理論、零售重力模型與空間競爭概念，將需求密度、互補業態、交通可達、消費力、競爭飽和、時段韌性加權；可信度低的輸入會自動降低分數確定性。</p>
+            </div>
+          </section>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <dialog id="sources-dialog">
+    <div class="dialog-head"><div><span class="eyebrow">DATA PROVENANCE</span><h2>資料來源與限制</h2></div><button class="dialog-close" aria-label="關閉">×</button></div>
+    <p class="dialog-intro">本平台不複製 Google Maps。可發布地圖採 OpenStreetMap；官方統計、實際點位與模型推估以不同標籤區分。</p>
+    <div id="sources-list" class="sources-list"></div>
+    <div class="legal-note"><strong>重要：</strong>本工具用於初篩，不構成租約、投資或營收保證。簽約前仍需現場分時段計數、租金與坪效試算。</div>
+  </dialog>
+
+  <dialog id="help-dialog">
+    <div class="dialog-head"><div><span class="eyebrow">QUICK START</span><h2>三步完成店址快篩</h2></div><button class="dialog-close" aria-label="關閉">×</button></div>
+    <ol class="help-steps">
+      <li><span>1</span><div><strong>輸入出租店面地址</strong><p>也可以直接點地圖定位，地址會以座標進行分析。</p></div></li>
+      <li><span>2</span><div><strong>切換分析半徑</strong><p>50–200m 看街角競爭，500–1,000m 看完整生活圈。</p></div></li>
+      <li><span>3</span><div><strong>依店家、客群、人流交叉判讀</strong><p>分數是起點，最後用現場觀察和租金試算做決策。</p></div></li>
+    </ol>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

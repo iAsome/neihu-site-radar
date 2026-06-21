@@ -1,0 +1,10 @@
+{
+  "name": "neihu-site-radar",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.mjs",
+    "sync:osm": "node scripts/sync-osm.mjs"
+  }
+}
