@@ -74,6 +74,20 @@
           </div>
         </section>
 
+        <section class="concept-section" aria-labelledby="concept-title">
+          <div class="section-title-row">
+            <h2 id="concept-title">我要開什麼店？</h2>
+            <span class="source-badge model">開店評比</span>
+          </div>
+          <div class="concept-form">
+            <label><span>大分類</span><select id="concept-category" aria-label="店型大分類"><option value="dessert">甜品店</option><option value="drink">飲料店</option><option value="restaurant">餐廳</option><option value="breakfast">早餐店</option><option value="digital">3C 通訊</option></select></label>
+            <label><span>小分類</span><select id="concept-subtype" aria-label="店型小分類"><option value="tofu-pudding">豆花店</option><option value="ice">冰品甜湯</option><option value="bakery-dessert">烘焙甜點</option></select></label>
+            <label><span>預估客單價</span><select id="concept-price" aria-label="預估客單價"><option value="100">100 元以下</option><option value="200">101–200 元</option><option value="400">201–400 元</option><option value="800">401–800 元</option><option value="1500">800 元以上</option></select></label>
+            <button id="run-concept" class="concept-run"><span>開始評比</span><b>→</b></button>
+          </div>
+          <div class="concept-current"><i></i><span>目前：<b id="concept-current-label">平價豆花店 · 100 元以下</b></span></div>
+        </section>
+
         <section class="category-section" aria-labelledby="category-title">
           <div class="section-title-row">
             <h2 id="category-title">地圖圖層</h2>
@@ -106,8 +120,8 @@
         </div>
         <div class="map-cache" id="map-cache"><i></i><span>台北資料已快取，縮放不重新載入</span></div>
         <div class="map-legend">
-          <span><i class="legend-ring"></i>分析範圍</span>
-          <span><i class="legend-heat"></i>商業密度</span>
+          <span><i class="legend-ring"></i>客群涵蓋</span>
+          <span><i class="legend-heat"></i>市場空缺</span>
           <span><i class="legend-pin"></i>選定店址</span>
         </div>
         <button class="map-reset" id="reset-view" title="回到分析位置">⌾</button>
@@ -118,7 +132,7 @@
         <div class="insight-header">
           <div>
             <span class="eyebrow">SITE SCORE</span>
-            <h2>店址機會分數</h2>
+            <h2 id="evaluation-score-title">豆花店適配分數</h2>
           </div>
           <div class="score-ring" id="score-ring" style="--score:78">
             <span><strong id="site-score">78</strong><small>/100</small></span>
@@ -131,7 +145,8 @@
 
         <nav class="tabs" aria-label="分析分頁">
           <button class="active" data-tab="overview">總覽</button>
-          <button data-tab="mix">店家</button>
+          <button data-tab="compare">評比</button>
+          <button data-tab="mix">競爭</button>
           <button data-tab="people">客群</button>
           <button data-tab="flow">人流</button>
           <button data-tab="advice">建議</button>
@@ -154,6 +169,27 @@
             <div class="card opportunity-card">
               <div class="card-title"><div><span class="eyebrow">WHITE SPACE</span><h3>市場空缺</h3></div><span class="source-badge model">模型推估</span></div>
               <div id="opportunity-list" class="opportunity-list"></div>
+            </div>
+          </section>
+
+          <section class="tab-panel" id="tab-compare">
+            <div class="concept-result-card" id="concept-result-card">
+              <div class="concept-result-top"><span class="concept-icon">豆</span><div><span class="eyebrow">CONCEPT FIT</span><h3 id="concept-result-title">平價豆花店</h3><p id="concept-result-copy">正在計算需求、消費力與競爭密度…</p></div><strong id="concept-fit-score">—</strong></div>
+              <div class="fit-meter"><i id="concept-fit-meter" style="--width:0%"></i></div>
+            </div>
+            <div class="compare-metrics">
+              <article><span>直接競爭</span><strong id="direct-competitors">—</strong><small>分析半徑內</small></article>
+              <article><span>消費能力</span><strong id="affordability-score">—</strong><small id="affordability-label">模型評估</small></article>
+              <article><span>附近居民</span><strong id="resident-estimate">—</strong><small>500m 模型估算</small></article>
+              <article><span>核心年齡</span><strong id="target-age-share">—</strong><small id="target-age-label">15–44 歲</small></article>
+            </div>
+            <div class="card competitor-card">
+              <div class="card-title"><div><span class="eyebrow">COMPETITORS</span><h3>附近競爭對手</h3></div><span class="source-badge observed">實際點位</span></div>
+              <div id="competitor-list" class="competitor-list"></div>
+            </div>
+            <div class="card gap-card">
+              <div class="card-title"><div><span class="eyebrow">ALL MARKET GAPS</span><h3>這個位置缺什麼店？</h3></div><span class="source-badge model">需求－供給</span></div>
+              <div id="market-gap-list" class="market-gap-list"></div>
             </div>
           </section>
 
