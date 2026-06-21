@@ -1,0 +1,109 @@
+{
+  "generatedAt": "2026-06-21T05:45:22.035Z",
+  "attribution": "© OpenStreetMap contributors, ODbL 1.0",
+  "regions": [
+    {
+      "id": "taipei",
+      "name": "臺北市",
+      "shortName": "台北",
+      "center": [
+        121.5598,
+        25.0878
+      ],
+      "bbox": [
+        121.45,
+        24.96,
+        121.67,
+        25.21
+      ],
+      "count": 54945,
+      "file": "./data/regions/taipei.json"
+    },
+    {
+      "id": "new-taipei",
+      "name": "新北市",
+      "shortName": "新北",
+      "center": [
+        121.4628,
+        25.012
+      ],
+      "bbox": [
+        121.28,
+        24.67,
+        122.02,
+        25.31
+      ],
+      "count": 44770,
+      "file": "./data/regions/new-taipei.json"
+    },
+    {
+      "id": "keelung",
+      "name": "基隆市",
+      "shortName": "基隆",
+      "center": [
+        121.7392,
+        25.1276
+      ],
+      "bbox": [
+        121.63,
+        25.05,
+        121.82,
+        25.21
+      ],
+      "count": 3869,
+      "file": "./data/regions/keelung.json"
+    },
+    {
+      "id": "taoyuan",
+      "name": "桃園市",
+      "shortName": "桃園",
+      "center": [
+        121.301,
+        24.9937
+      ],
+      "bbox": [
+        120.98,
+        24.58,
+        121.48,
+        25.18
+      ],
+      "count": 24842,
+      "file": "./data/regions/taoyuan.json"
+    },
+    {
+      "id": "hsinchu-city",
+      "name": "新竹市",
+      "shortName": "新竹市",
+      "center": [
+        120.9686,
+        24.8066
+      ],
+      "bbox": [
+        120.88,
+        24.72,
+        121.03,
+        24.87
+      ],
+      "count": 6851,
+      "file": "./data/regions/hsinchu-city.json"
+    },
+    {
+      "id": "hsinchu-county",
+      "name": "新竹縣",
+      "shortName": "新竹縣",
+      "center": [
+        121.1252,
+        24.8387
+      ],
+      "bbox": [
+        120.97,
+        24.42,
+        121.53,
+        25.04
+      ],
+      "count": 10328,
+      "file": "./data/regions/hsinchu-county.json"
+    }
+  ],
+  "totalCount": 145605
+}

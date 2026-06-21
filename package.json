@@ -5,6 +5,6 @@
   "type": "module",
   "scripts": {
     "dev": "node server.mjs",
-    "sync:osm": "node scripts/sync-osm.mjs"
+    "sync:osm": "node scripts/sync-regions.mjs"
   }
 }

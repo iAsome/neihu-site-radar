@@ -1,11 +1,19 @@
 [
   {
-    "name": "OpenStreetMap 店家與設施點位",
+    "name": "OpenStreetMap 北台灣店家與設施點位",
     "owner": "OpenStreetMap contributors",
     "frequency": "依 OSM 社群更新",
     "license": "ODbL 1.0",
     "url": "https://www.openstreetmap.org/copyright",
-    "usage": "店家、辦公室、醫療、交通、休閒等 POI 與底圖",
+    "usage": "台北、新北、基隆、桃園、新竹的店家、辦公室、醫療、交通與休閒 POI",
+    "kind": "實際觀測"
+  },
+  {
+    "name": "MapLibre GL JS × OpenFreeMap",
+    "owner": "MapLibre／OpenFreeMap contributors",
+    "frequency": "向量圖磚",
+    "url": "https://openfreemap.org/quick_start/",
+    "usage": "WebGL 向量底圖、連續縮放與 GPU 點位聚合",
     "kind": "實際觀測"
   },
   {

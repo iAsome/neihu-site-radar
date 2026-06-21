@@ -3,22 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="內湖開店雷達：輸入地址，分析 50–1,000 公尺內的店家、客群、人流、消費力與開店機會。" />
-  <title>內湖開店雷達｜地址商圈選址分析</title>
+  <meta name="description" content="北台灣開店雷達：分析台北、新北、基隆、桃園、新竹 50–1,000 公尺內的店家、客群、人流與開店機會。" />
+  <title>北台灣開店雷達｜地址商圈選址分析</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css" />
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
   <div class="app-shell">
     <header class="topbar">
-      <a class="brand" href="#" aria-label="內湖開店雷達首頁">
+      <a class="brand" href="#" aria-label="北台灣開店雷達首頁">
         <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span><strong>內湖開店雷達</strong><small>NEIHU SITE RADAR</small></span>
+        <span><strong>北台灣開店雷達</strong><small>NORTHERN TAIWAN SITE RADAR</small></span>
       </a>
       <div class="topbar-center">
         <span class="status-dot"></span>
@@ -38,7 +36,7 @@
             <span class="eyebrow">ADDRESS INTELLIGENCE</span>
             <h1>這個店址，<br />生意做得起來嗎？</h1>
           </div>
-          <p>輸入內湖地址，或直接點選地圖。系統會重算周邊競爭、客群與時段機會。</p>
+          <p>輸入台北、新北、基隆、桃園或新竹地址，也可以直接點地圖重新分析。</p>
         </div>
 
         <section class="search-section" aria-labelledby="search-title">
@@ -53,10 +51,12 @@
               <button type="submit" aria-label="搜尋地址">→</button>
             </label>
           </form>
-          <div class="quick-addresses" aria-label="範例地址">
-            <button data-lat="25.07857" data-lon="121.57605" data-address="台北市內湖區瑞光路513巷22弄5號">內科核心</button>
-            <button data-lat="25.08275" data-lon="121.56744" data-address="捷運港墘站">港墘站</button>
-            <button data-lat="25.08375" data-lon="121.60239" data-address="捷運葫洲站">葫洲站</button>
+          <div class="quick-addresses region-switcher" aria-label="快速切換城市">
+            <button data-region="taipei" data-lat="25.0523" data-lon="121.5437" data-address="台北市中心">台北</button>
+            <button data-region="new-taipei" data-lat="25.0114" data-lon="121.4618" data-address="新北市板橋區">新北</button>
+            <button data-region="keelung" data-lat="25.1283" data-lon="121.7419" data-address="基隆市中心">基隆</button>
+            <button data-region="taoyuan" data-lat="24.9937" data-lon="121.3010" data-address="桃園市中心">桃園</button>
+            <button data-region="hsinchu-city" data-lat="24.8066" data-lon="120.9686" data-address="新竹市中心">新竹</button>
           </div>
         </section>
 
@@ -84,26 +84,27 @@
 
         <section class="district-baseline">
           <div class="baseline-head">
-            <span>內湖區基準</span>
-            <span class="source-badge official">官方統計</span>
+            <span id="baseline-label">台北區域資料</span>
+            <span class="source-badge observed">分區快取</span>
           </div>
           <div class="baseline-grid">
-            <div><strong id="district-pop">—</strong><span>常住人口</span></div>
-            <div><strong id="district-households">—</strong><span>戶數</span></div>
-            <div><strong id="district-workforce">—</strong><span>上班人口推估</span></div>
+            <div><strong id="district-pop">—</strong><span>區域總點位</span></div>
+            <div><strong id="district-households">—</strong><span>目前已載入</span></div>
+            <div><strong id="district-workforce">1×</strong><span>縮放載入次數</span></div>
           </div>
         </section>
       </aside>
 
-      <section class="map-stage" aria-label="內湖區商圈地圖">
+      <section class="map-stage" aria-label="北台灣商圈地圖">
         <div id="map"></div>
         <div class="map-top-card">
           <div>
-            <span class="map-label">目前分析位置</span>
+            <span class="map-label"><b id="current-region">台北</b> · 目前分析位置</span>
             <strong id="selected-address">瑞光路 513 巷商辦聚落</strong>
           </div>
           <span class="confidence-badge"><i></i> 資料可信度 <b id="confidence-score">82%</b></span>
         </div>
+        <div class="map-cache" id="map-cache"><i></i><span>台北資料已快取，縮放不重新載入</span></div>
         <div class="map-legend">
           <span><i class="legend-ring"></i>分析範圍</span>
           <span><i class="legend-heat"></i>商業密度</span>
@@ -177,7 +178,7 @@
             <div class="card age-card">
               <div class="card-title"><div><span class="eyebrow">AGE PROFILE</span><h3>可能客群年齡</h3></div></div>
               <div id="age-chart" class="age-chart"></div>
-              <p class="method-note">以內湖區戶籍年齡為基底，依周邊辦公、學校與住宅點位調整；不是手機信令實測。</p>
+              <p class="method-note">以北台灣都會年齡基準為底，依周邊辦公、學校與住宅點位調整；不是手機信令實測。</p>
             </div>
           </section>
 
@@ -219,7 +220,7 @@
   <dialog id="help-dialog">
     <div class="dialog-head"><div><span class="eyebrow">QUICK START</span><h2>三步完成店址快篩</h2></div><button class="dialog-close" aria-label="關閉">×</button></div>
     <ol class="help-steps">
-      <li><span>1</span><div><strong>輸入出租店面地址</strong><p>也可以直接點地圖定位，地址會以座標進行分析。</p></div></li>
+      <li><span>1</span><div><strong>輸入北台灣出租店面地址</strong><p>支援台北、新北、基隆、桃園、新竹，也可以直接點地圖定位。</p></div></li>
       <li><span>2</span><div><strong>切換分析半徑</strong><p>50–200m 看街角競爭，500–1,000m 看完整生活圈。</p></div></li>
       <li><span>3</span><div><strong>依店家、客群、人流交叉判讀</strong><p>分數是起點，最後用現場觀察和租金試算做決策。</p></div></li>
     </ol>
@@ -227,8 +228,7 @@
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-  <script type="module" src="./app.js"></script>
+  <script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
+  <script type="module" src="./app-v2.js"></script>
 </body>
 </html>
